@@ -12,13 +12,15 @@ public class User {
     private String phoneNumber;
     private String email;
     private String address;
-    private RoleName roleName;
+
+//    private RoleName roleName;
+    private String roleName ;
     private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
 
-    public User(int id, String username, String password, String name, String phoneNumber, String email, String address, RoleName roleName, Set<Role> roles) {
+    public User(int id, String username, String password, String name, String phoneNumber, String email, String address, String roleName) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -26,17 +28,32 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
-       this.roleName = roleName;
-        this.roles = roles;
+//        this.roles = roles;
+        this.roleName = roleName;
     }
-    public User(int id, String username, String password, Set<Role> roles) {
+
+//    public User(int id, String username, String password, Set<Role> roles) {
+//        this.id = id;
+//        this.username = username;
+//        this.password = password;
+//        this.roles = roles;
+//    }
+//    public User(int id, String username, String password, RoleName roleName) {
+//        this.id = id;
+//        this.username = username;
+//        this.password = password;
+////        this.roles = roles;
+//        this.roleName = roleName;
+//    }
+
+
+    public User(int id, String username, String password, String name, String roleName) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.roles = roles;
+        this.name = name;
+        this.roleName = roleName;
     }
-
-
 
     public User(String raw) {
         String [] strings = raw.split(",");
@@ -47,8 +64,10 @@ public class User {
         this.phoneNumber = strings[4];
         this.email = strings[5];
         this.address = strings[6];
-        this.roleName = RoleName.valueOf(strings[7]);
+        this.roleName = strings[7];
+//        this.roleName = RoleName.valueOf(strings[7]);
     }
+
 
 
 
@@ -108,16 +127,31 @@ public class User {
         this.address = address;
     }
 
-    public RoleName getRole() {
+    public String getRoleName() {
         return roleName;
     }
 
-    public void setRole(RoleName roleName) {
+    public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+    //    public RoleName getRole() {
+//        return roleName;
+//    }
+
+//    public void setRole(RoleName roleName) {
+//        this.roleName = roleName;
+//    }
+
     @Override
     public String toString() {
-        return id + "," + username + "," + password + "," + name + "," + phoneNumber + "," + email + "," + address + "," + roleName;
+        return id + "," + username + "," + password + "," + name + "," + phoneNumber + "," + email + "," + address + ","+roleName ;
     }
 }

@@ -1,7 +1,7 @@
 package product.model;
 
 public enum RoleName {
-    ADMIN("ADMIN"), USER("USER");
+    ADMIN("admin"), USER("user");
 
     private String value;
 

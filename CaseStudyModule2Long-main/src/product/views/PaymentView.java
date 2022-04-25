@@ -1,10 +1,12 @@
 package product.views;
 
-import product.model.Payment;
-import product.model.Product;
+import product.model.*;
+import product.services.Cart.CartService;
 import product.services.Payment.PaymentService;
 import product.services.Product.ProductService;
 import product.config.ValidateUtils;
+import product.services.User.IUserServiceIMPL;
+import product.services.UserPrincipal.IUserPrincipalIMPL;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -17,6 +19,9 @@ public class PaymentView {
     PaymentService paymentService = new PaymentService();
     ProductService productService = new ProductService();
     List<Payment> list = new ArrayList<>();
+    List<Cart> cartList = new ArrayList<>();
+    IUserServiceIMPL userServiceIMPL = new IUserServiceIMPL();
+    IUserPrincipalIMPL userPrincipalIMPL = new IUserPrincipalIMPL();
     Menu menu = new Menu();
     int id1 = 0;
     int id2 = 0;
@@ -33,6 +38,8 @@ public class PaymentView {
     int quantity;
     int quantity1;
     int currentQuantity;
+
+    CartService cartService = new CartService();
 
 
     Product product = null;
@@ -122,8 +129,40 @@ public class PaymentView {
                 list.add(p);
             }
         }
-        option();
 
+        int id;
+        id = IUserPrincipalIMPL.findAll().get(0).getId();
+        User user = userServiceIMPL.getUsers().get(id-1);
+        name = user.getName();
+        Cart cart = new Cart(id1,name,quantity,product.getName(),"CHƯA MUA HÀNG");
+
+        cartService.addCart(cart);
+        System.out.println("Giỏ Hàng Của: "+name );
+        List<Cart> cartLists = cartService.getCart();
+//        System.out.println(cartService.findCartbyName(name).getName());
+        System.out.println("...");
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("......");
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.printf("\t\t\t\t%-10s %-2s %-15s %-2s %-10s %-2s %-25s %-2s %-10s \n",
+                "ID SP","|","KHÁCH HÀNG","|","SỐ LƯỢNG","|", "TÊN SẢN PHẨM","|","TRẠNG THÁI");
+        for (int i =0; i<cartLists.size();i++){
+            if (name.equals(cartLists.get(i).getName())){
+                System.out.printf("\t\t\t\t%-10s %-2s %-15s %-2s %-10s %-2s %-25s %-2s %-10s\n",
+                        cartLists.get(i).getId(),"|", cartLists.get(i).getName(),"|", cartLists.get(i).getQuantity(),"|", cartLists.get(i).getProductName(),"|", cartLists.get(i).getStatus());
+//                System.out.println("Có Vào không ?");
+            }
+        }
+
+        option();
     }
 
     public void showTotal() {
@@ -198,18 +237,19 @@ public class PaymentView {
     }
 
     public void check() {
-        System.out.println("Bạn có muốn thanh toán đơn hàng này không?");
+        System.out.println("Bạn có muốn thanh toán đơn hàng máy bay này không?");
         System.out.println("nhập 1 để thanh toán");
         System.out.println("nhập 2 để mua lại");
         System.out.print("\t➺ ");
-        int options;
+        String options;
         try {
-            options = Integer.parseInt(scanner.nextLine());
+//            options = Integer.parseInt(scanner.nextLine());
+            options = scanner.nextLine();
             switch (options) {
-                case 1:
+                case "1":
                     pay();
                     return;
-                case 2:
+                case "2":
                     list.clear();
                     buy();
                     break;
@@ -225,34 +265,101 @@ public class PaymentView {
     }
 
     public void pay() {
-        System.out.println(" ☟ Nhập thông tin cá nhân để ship hàng ☟");
+        System.out.println("       ☟ THÔNG TIN NHẬP TỰ ĐỘNG  ☟");
         System.out.println("∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘");
-        System.out.println("Nhập họ và tên (vd: Nguyen Van Tuan Anh) ");
-        System.out.print("\t➺ ");
-        name = scanner.nextLine();
-        while (!ValidateUtils.isNameValid(name)) {
-            System.out.println("Tên " + name + "không đúng định dạng." + " Vui lòng nhập lại!" + " (Tên phải viết hoa chữ cái đầu và không dấu)");
-            System.out.println("Nhập tên (vd: Anh Nguyen) ");
-            System.out.print("\t➺ ");
-            name = scanner.nextLine();
+        System.out.println("============== MY NAVBAR ===============");
+//        name = scanner.nextLine();
+        System.out.println("...");
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        System.out.println("Nhập số điện thoại (vd: 0971789396): ");
+        System.out.println("......");
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("...........");
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("................");
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("...............................");
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("...............ok.ok.ok.ok.................");
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        int id;
+        id = IUserPrincipalIMPL.findAll().get(0).getId();
+        User user = userServiceIMPL.getUsers().get(id-1);
+        name = user.getName();
+//        System.out.println(name);
+
+//        while (!ValidateUtils.isNameValid(name)) {
+//            System.out.println("Tên " + name + "không đúng định dạng." + " Vui lòng nhập lại!" + " (Tên phải viết hoa chữ cái đầu và không dấu)");
+//            System.out.println("Nhập tên (vd: Anh Nguyen) ");
+//            System.out.print("\t➺ ");
+//            name = scanner.nextLine();
+//        }
         System.out.print("\t➺ ");
-        phone = scanner.nextLine();
+        System.out.println("Tên bạn là: "+name);
+        try {
+            Thread.sleep(600);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(".......................");
+
+        phone = user.getPhoneNumber();
+//        phone = scanner.nextLine();
         while (!ValidateUtils.isPhoneValid(phone)) {
             System.out.println("Số " + phone + " của bạn không đúng định dạng. Vui lòng nhập lại! " + "(Số điện thoại bao gồm 10 số và bắt đầu là số 0)");
             System.out.println("Nhập số điện thoại (vd: 0971789396)");
             System.out.print("\t➺ ");
             phone = scanner.nextLine();
         }
-        System.out.println("Nhập địa chỉ (vd: Huế)");
         System.out.print("\t➺ ");
-        address = scanner.nextLine();
-        while (!ValidateUtils.isAddreeValid(address)) {
-            System.out.println("Nhập địa chỉ ");
-            System.out.print("\t➺ ");
-            address = scanner.nextLine();
+        System.out.println("SDT của bạn là: "+phone);
+        try {
+            Thread.sleep(600);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        System.out.println(".......................");
+
+
+        address = user.getAddress();
+//        while (!ValidateUtils.isAddreeValid(address)) {
+//            System.out.println("Nhập địa chỉ ");
+//            System.out.print("\t➺ ");
+//            address = scanner.nextLine();
+//        }
+        System.out.print("\t➺ ");
+        System.out.println("Địa chỉ của bạn là: "+address);
+        try {
+            Thread.sleep(600);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(".......................");
         for (Payment p : list) {
             p.setName(name);
             p.setPhoneNumber(phone);
@@ -267,6 +374,40 @@ public class PaymentView {
         }
         productService.checkExist();
         System.out.println("thanh toán thành công");
+        try {
+            Thread.sleep(600);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(".......................");
+        List<Cart> cartLists = cartService.getCart();
+        name = user.getName();
+        System.out.printf("\t\t\t\t%-10s %-2s %-15s %-2s %-10s %-2s %-25s %-2s %-10s \n",
+                "ID SP","|","KHÁCH HÀNG","|","SỐ LƯỢNG","|", "TÊN SẢN PHẨM","|","TRẠNG THÁI");
+        for (int i =0; i<cartLists.size();i++){
+            if (name.equals(cartLists.get(i).getName())){
+                cartLists.get(i).setStatus("ĐÃ MUA HÀNG");
+                System.out.printf("\t\t\t\t%-10s %-2s %-15s %-2s %-10s %-2s %-25s %-2s %-10s\n",
+                        cartLists.get(i).getId(),"|", cartLists.get(i).getName(),"|", cartLists.get(i).getQuantity(),"|", cartLists.get(i).getProductName(),"|",cartLists.get(i).getStatus());
+//                cartService.removeCart();
+//                if (name.equals(cartLists.get(i).getName())&&cartLists.get(i).getStatus().equalsIgnoreCase("CHƯA MUA HÀNG")) {
+//                    cartService.addCart(cartLists.get(i));
+//                }
+                for (int j =0; j<cartLists.size();j++) {
+                    if (name.equalsIgnoreCase(cartLists.get(j).getName())) {
+                        cartService.updateCart(cartLists.get(j).getName(),cartLists.get(j));
+                    }
+                }
+
+            }
+        }
+        try {
+            Thread.sleep(600);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(".......................");
+
         afterPay();
 
     }
@@ -277,7 +418,9 @@ public class PaymentView {
         System.out.println("Bạn có muốn kiểm tra thông tin thanh toán không?");
         System.out.println("nhập 1 để xem thông tin thanh toán");
         System.out.println("nhập 2 để quay lại menu");
-        System.out.println("nhập 3 để theo dõi tiến độ giao hàng");
+        System.out.println("nhập 3 để theo dõi biến động thị trường máy bay trên Server Game Long");
+        System.out.println("Sau Khi Thanh Toán Giỏ Hàng Sẽ Được Xóa");
+
         System.out.print("\t➺ ");
         int options;
         try {

@@ -37,6 +37,7 @@ public class IRoleServiceIMPL implements IRoleService{
 
     @Override
     public Role findByName(RoleName name) {
+        findAll();
         for (int i = 0; i <roleList.size();i++) {
             if (name == roleList.get(i).getName()){
                 return roleList.get(i);

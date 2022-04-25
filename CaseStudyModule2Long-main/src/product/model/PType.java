@@ -1,7 +1,7 @@
 package product.model;
 
 public enum PType {
-    RIFLE("RIFLE"), PISTOL("PISTOL"), SABER("SABER"),CANON("CANON"), TANK("TANK"), AIRPLANE("AIRPLANE");
+    FRANCE("FRANCE"), JAPAN("JAPAN"),GERMAN("GERMAN"), BRITAIN("BRITAIN"), AMERICA("AMERICA");
     ;
     private String value;
 

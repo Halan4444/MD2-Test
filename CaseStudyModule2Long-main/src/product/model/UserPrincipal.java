@@ -15,13 +15,13 @@ public class UserPrincipal {
     public UserPrincipal() {
     }
 
-    public UserPrincipal(int id, String name, String username, String password, Set<Role> roleSet,RoleName roleName) {
+    public UserPrincipal(int id, String name, String username, String password, Set<Role> roleSet) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.password = password;
         this.roleSet = roleSet;
-        this.roleName = roleName;
+//        this.roleName = roleName;
     }
 
     public UserPrincipal(String raw) {
@@ -72,6 +72,11 @@ public class UserPrincipal {
 
     public void setRoleSet(Set<Role> roleSet) {
         this.roleSet = roleSet;
+    }
+
+    @Override
+    public String toString() {
+        return id + "," + username + "," + password + "," + name + "," +roleName ;
     }
 
 }

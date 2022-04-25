@@ -7,6 +7,9 @@ public class SignUpDTO {
     private String username;
     private String password;
     private Set<String> strRole;
+    private String phoneNumber;
+    private String email;
+    private String address;
     public SignUpDTO() {
     }
 
@@ -15,6 +18,8 @@ public class SignUpDTO {
         this.username = username;
         this.password = password;
         this.strRole = strRole;
+
+
     }
 
     public String getName() {
@@ -47,5 +52,29 @@ public class SignUpDTO {
 
     public void setStrRole(Set<String> strRole) {
         this.strRole = strRole;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

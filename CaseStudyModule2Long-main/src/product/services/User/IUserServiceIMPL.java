@@ -3,25 +3,30 @@ package product.services.User;
 import data.Path;
 import product.config.CSVUtils;
 import product.model.Product;
-import product.model.Status;
 import product.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class IUserServiceIMPL implements IUserService{
+
+    static CSVUtils userCSVUtils = new CSVUtils();
     public static List<User> userList = new ArrayList<>();
     public static String PATH_USER = Path.PATH + "user.csv";
     public static  String path = PATH_USER;
 
+    @Override
     public List<User> findAll(){
         CSVUtils.write(path,userList);
         return userList;
     }
 
-    public void add(User newUser) {
+    @Override
+    public void add (User newUser) {
+//        userList = getUsers();
         userList.add(newUser);
-        CSVUtils.write(path, userList);
+        CSVUtils.write(path,userList);
+//        CSVUtils.write(path, userList);
     }
 
     public void update(int id, User updateUser) {
@@ -35,6 +40,7 @@ public class IUserServiceIMPL implements IUserService{
         }
     @Override
     public User findById(int id) {
+        getUsers();
         for (int i=0; i<userList.size();i++) {
             if (userList.get(i).getId() == id) {
                 return userList.get(i);
@@ -52,7 +58,6 @@ public class IUserServiceIMPL implements IUserService{
         return userList = newUserList;
     }
 
-    @Override
     public boolean existedByUsername(String username) {
         getUsers();
         for (User user: userList) {
@@ -64,16 +69,16 @@ public class IUserServiceIMPL implements IUserService{
 
     @Override
     public boolean checkLogin(String username, String password) {
-        for (int i =0; i < userList.size();i++) {
-            if (username.equals(userList.get(i).getUsername())&&password.equals(userList.get(i).getPassword())) {
+
+        for (int i =0; i < getUsers().size();i++) {
+            if (username.equals(getUsers().get(i).getUsername())&&password.equals(getUsers().get(i).getPassword())) {
                 return true;
             }
         } return false;
     }
 
 
-
-
+    @Override
     public User findByUsername (String username){
         for (int i =0; i<userList.size();i++){
             if (username.equals(userList.get(i).getUsername())) {

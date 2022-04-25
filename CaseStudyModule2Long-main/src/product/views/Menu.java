@@ -37,13 +37,13 @@ public  class Menu {
                     paymentView.showAllIncome();
                     break;
                 case 8:
-                    chon();
+                    chon1();
                     break;
                 case 9:
                     exit();
                     break;
                 default:
-                    System.out.println("Chọn chức năng không đúng! Vui lòng chọn lại");
+                    System.out.println("▲ Chọn chức năng không đúng! Vui lòng chọn lại ▲");
                     boss();
             }
         } catch (Exception e) {
@@ -55,7 +55,6 @@ public  class Menu {
     public static void guest() {
         menuGuest();
         try {
-            System.out.println("* * * * --GIAO DIỆN GUEST-- * * * * * *");
             System.out.println("\nChọn chức năng ");
             System.out.print("\t➺ ");
             int number = scanner.nextInt();
@@ -83,13 +82,13 @@ public  class Menu {
                     paymentView.buy();
                     break;
                 case 8:
-                    chon();
+                    chon1();
                     break;
                 case 9:
                     exit();
                     break;
                 default:
-                    System.out.println("Chọn chức năng không đúng! Vui lòng chọn lại");
+                    System.out.println("▲ Chọn chức năng không đúng! Vui lòng chọn lại ▲");
                     guest();
             }
         } catch (Exception e) {
@@ -117,7 +116,7 @@ public  class Menu {
                         exit();
                         break;
                     default:
-                        System.out.println("Chọn chức năng không đúng! Vui lòng chọn lại");
+                        System.out.println("▲ Chọn chức năng không đúng! Vui lòng chọn lại ▲");
                         chon();
                 }
 
@@ -145,11 +144,13 @@ public  class Menu {
                         new LoginView();
                         break;
                     case 3:
-                        exit();
+                        new ProfileView();
                         break;
+                    case 4:
+                        exit();
                     default:
-                        System.out.println("Chọn chức năng không đúng! Vui lòng chọn lại");
-                        chon();
+                        System.out.println("▲ Chọn chức năng không đúng! Vui lòng chọn lại ▲");
+                        chon1();
                 }
 
             } catch (InputMismatchException io) {
@@ -164,9 +165,10 @@ public  class Menu {
         System.out.println();
         System.out.println("* * * * GIAO DIỆN TRUY CẬP  * * *");
         System.out.println("*                               *");
-        System.out.println("*       1.    CREATE ACCOUNT    *");
-        System.out.println("*       2.    LOGIN             *");
-        System.out.println("*       3.    EXIT              *");
+        System.out.println("*      ⌛ 1.    CREATE ACCOUNT   *");
+        System.out.println("*      ✍ 2.    LOGIN            *");
+        System.out.println("*      ⌛ 3.    BACK TO GAME     *");
+        System.out.println("*      ✍ 4.    EXIT             *");
         System.out.println("*                               *");
         System.out.println("* * * * * * * * * * * * * * * * *");
     }
@@ -177,13 +179,14 @@ public  class Menu {
         System.out.println("*                               *");
         System.out.println("*       1.    ADMIN             *");
         System.out.println("*       2.    USER              *");
-        System.out.println("*       3.    EXIT              *");
+        System.out.println("*       3.    BACK TO GAME      *");
+        System.out.println("*       4.    EXIT              *");
         System.out.println("*                               *");
         System.out.println("* * * * * * * * * * * * * * * * *");
     }
 
     public static void exit() {
-        System.out.println("\t\t\t\t\t\tMerci Beaucoup Monsieur");
+        System.out.println("\t\t\t\t\t\t \uD83D\uDE09 Merci Beaucoup Monsieur \uD83D\uDE09");
         System.out.println("\t\t\t\t\t\t ✌ Au Revoir Monsieur ✌");
 
         System.exit(0);
@@ -199,8 +202,8 @@ public  class Menu {
         System.out.println("⚪     5. Tìm kiếm sản phẩm theo tên             ⚪");
         System.out.println("⚪     6. Tìm kiếm sản phẩm theo loại            ⚪");
         System.out.println("⚪     7. Xem tổng doanh thu                     ⚪");
-        System.out.println("⚪     8. Quay lại                               ⚪");
-        System.out.println("⚪     9. Thoát                                  ⚪");
+        System.out.println("⚪     8. Return                                 ⚪");
+        System.out.println("⚪     9. Exit                                   ⚪");
         System.out.println("⚪                                               ⚪");
         System.out.println("⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪  ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪");
     }
@@ -215,8 +218,8 @@ public  class Menu {
         System.out.println("⚪     5. Sắp xếp sản phẩm theo giá tăng dần   ⚪");
         System.out.println("⚪     6. Sắp xếp sản phẩm theo giá giảm dần   ⚪");
         System.out.println("⚪     7. Mua sản phẩm                         ⚪");
-        System.out.println("⚪     8. Quay lại                             ⚪");
-        System.out.println("⚪     9. Thoát                                ⚪");
+        System.out.println("⚪     8. Return                               ⚪");
+        System.out.println("⚪     9. Exit                                 ⚪");
         System.out.println("⚪                                             ⚪");
         System.out.println("⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪");
     }
